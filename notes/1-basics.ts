@@ -3,22 +3,30 @@
 /**
  * (1) x is a string, b/c we’ve initialized it
  */
-// let x = "hello world";
+let x = "hello world";
 
 /**
  * (2) reassignment is fine
  */
-// x = "hello mars";
+x = "hello mars";
 
 /**
  * (3) but if we try to change type
  */
-// x = 42; // 🚨 ERROR
+x = 42; // 🚨 ERROR
 
 /**
  * (4) let's look at const. The type is literally 'hello world'
  */
-// const y = "hello world";
+const y = "hello world";
+// Cannot assign to 'y' because it is a constant.
+// y = "hello mars"
+
+// function foo(arg: "hello mars"){
+
+// }
+// foo(y)
+// Argument of type '"hello world"' is not assignable to parameter of type '"hello mars"'.
 
 /**
  * This is called a 'string literal type'. y can never be reassigned since it's a const,
@@ -36,6 +44,7 @@
 /**
  * If we look at the type of z, it's `any`. This is the most flexible type
  * in TypeScript (think of it like a JavaScript `let`)
+ * known as 'top type' in type systems such as TS
  */
 
 /**
@@ -71,7 +80,7 @@
  * (10) Tuple values often require type annotations (  : [number, number] )
  */
 // const xx = [32, 31]; // number[];
-// const yy: [number, number] = [32, 31];
+// const yy: [number, number] = [32, 31]; --correct way for tuples
 
 //== OBJECTS ==//
 
