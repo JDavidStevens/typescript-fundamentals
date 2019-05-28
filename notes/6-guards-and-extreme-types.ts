@@ -6,13 +6,13 @@ import { HasEmail } from "./1-basics";
  * (1) "Top types" are types that can hold any value. Typescript has two of them
  */
 
-// let myAny: any = 32;
-// let myUnknown: unknown = "hello, unknown";
+let myAny: any = 32;
+let myUnknown: unknown = "hello, unknown";
 
 // Note that we can do whatever we want with an any, but nothing with an unknown
 
-// myAny.foo.bar.baz;
-// myUnknown.foo;
+myAny.foo.bar.baz;
+myUnknown.foo;
 
 /**
  * (2) When to use `any`
@@ -72,9 +72,9 @@ import { HasEmail } from "./1-basics";
  * -   Look how we can get mixed up below
  */
 
-// let aa: unknown = 41;
-// let bb: unknown = ["a", "string", "array"];
-// bb = aa; // 🚨 yikes
+let aa: unknown = 41;
+let bb: unknown = ["a", "string", "array"];
+bb = aa; // 🚨 yikes
 
 /**
  * (7) Alternative to unknowns - branded types
@@ -129,29 +129,30 @@ import { HasEmail } from "./1-basics";
  * is through narrowing exhaustively
  */
 
-// let x = "abc" as string | number;
+let x = "abc" as string | number;
 
-// if (typeof x === "string") {
-//   // x is a string here
-//   x.split(", ");
-// } else if (typeof x === "number") {
-//   // x is a number here
-//   x.toFixed(2);
-// } else {
-//   // x is a never here
-// }
+if (typeof x === "string") {
+  // x is a string here
+  x.split(", ");
+} else if (typeof x === "number") {
+  // x is a number here
+  x.toFixed(2);
+} else {
+  x
+    // x is a never here
+}
 
 /**
  * (9) We can use this to our advantage to create exhaustive conditionals and switches
  */
 
-// class UnreachableError extends Error {
-//   constructor(val: never, message: string) {
-//     super(`TypeScript thought we could never end up here\n${message}`);
-//   }
-// }
+class UnreachableError extends Error {
+  constructor(val: never, message: string) {
+    super(`TypeScript thought we could never end up here\n${message}`);
+  }
+}
 
-// let y = 4 as string | number;
+// let y = 4 as string | number | boolean;
 
 // if (typeof y === "string") {
 //   // y is a string here
@@ -159,6 +160,22 @@ import { HasEmail } from "./1-basics";
 // } else if (typeof y === "number") {
 //   // y is a number here
 //   y.toFixed(2);
-// } else {
+// } else if(typeof y === 'boolean'){
+
+// }
+// // above is an 'exhaustive' conditional
+// else {
 //   throw new UnreachableError(y, "y should be a string or number");
 // }
+
+let y = 4 as string | number;
+
+if (typeof y === "string") {
+  // y is a string here
+  y.split(", ");
+} else if (typeof y === "number") {
+  // y is a number here
+  y.toFixed(2);
+} else {
+  throw new UnreachableError(y, "y should be a string or number");
+}
