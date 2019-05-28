@@ -6,16 +6,16 @@ import { HasEmail } from "./1-basics";
  */
 
 // // param determines the value of x
-// function wrappedValue(x: any) {
-//   return {
-//     value: x
-//   };
-// }
+function wrappedValue(x: any) {
+  return {
+    value: x
+  };
+}
 
 // // type param determines the type of x
-// interface WrappedValue<X> {
-//   value: X;
-// }
+interface WrappedValue<X> {
+  value: X;
+}
 
 // let val: WrappedValue<string[]> = { value: [] };
 // val.value;
@@ -31,9 +31,9 @@ import { HasEmail } from "./1-basics";
  */
 
 // // for Array.prototype.filter
-// interface FilterFunction<T = any> {
-//   (val: T): boolean;
-// }
+interface FilterFunction<T = any> {
+  (val: T): boolean;
+}
 
 // const stringFilter: FilterFunction<string> = val => typeof val === "string";
 // stringFilter(0); // 🚨 ERROR
@@ -105,18 +105,18 @@ import { HasEmail } from "./1-basics";
  * - it can probably be eliminated
  */
 
-// interface Shape {
-//   draw();
-// }
-// interface Circle extends Shape {
-//   radius: number;
-// }
+interface Shape {
+  draw();
+}
+interface Circle extends Shape {
+  radius: number;
+}
 
-// function drawShapes1<S extends Shape>(shapes: S[]) {
-//   shapes.forEach(s => s.draw());
-// }
+function drawShapes1<S extends Shape>(shapes: S[]) {
+  shapes.forEach(s => s.draw());
+}
 
-// function drawShapes2(shapes: Shape[]) {
-//   // this is simpler. Above type param is not necessary
-//   shapes.forEach(s => s.draw());
-// }
+function drawShapes2(shapes: Shape[]) {
+  // this is simpler. Above type param is not necessary
+  shapes.forEach(s => s.draw());
+}
