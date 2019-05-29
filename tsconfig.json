@@ -7,7 +7,9 @@
     "strictBindCallApply": true,
     "noUnusedLocals": false,
     "noUnusedParameters": false,
-    "noImplicitAny": false
+    "noImplicitAny": false,
+    "target":"es6",
+    "lib":["es5","dom"]
   },
   "include": ["examples/*/src", "challenges/*/src", "notes"]
 }
